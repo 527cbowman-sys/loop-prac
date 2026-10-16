@@ -138,3 +138,38 @@ document.getElementById('btnUppercase').addEventListener('click', uppercaseList)
 document.getElementById('btnReverse').addEventListener('click', reverseList)
 document.getElementById('btnRandom').addEventListener('click', randomFoodPicker)
 document.getElementById('btnLengths').addEventListener('click', wordLengths)
+document.getElementById('btnUppercase').addEventListener('click', uppercaseList)
+document.getElementById('btnReverse').addEventListener('click', reverseList)
+document.getElementById('btnRandom').addEventListener('click', randomFoodPicker)
+document.getElementById('btnLengths').addEventListener('click', wordLengths)
+
+function uppercaseList () {
+  const upperFoods = foods.map(food => food.toUpperCase())
+  const list = upperFoods.map(item => `<li class="list-group-item">${item}</li>`).join('')
+  render(`<ul class="list-group">${list}</ul>`)
+}
+
+function reverseList () {
+  const reversedFoods = [...foods].reverse()
+  const list = reversedFoods.map(item => `<li class="list-group-item">${item}</li>`).join('')
+  render(`<ul class="list-group">${list}</ul>`)
+}
+
+function randomFoodPicker () {
+  const randomIndex = Math.floor(Math.random() * foods.length)
+  const randomFood = foods[randomIndex]
+  render(`
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Today's Pick</h5>
+        <p class="card-text">${randomFood}</p>
+      </div>
+    </div>
+  `)
+}
+
+function wordLengths () {
+  const lengths = foods.map(food => `${food} — ${food.length} letters`)
+  const list = lengths.map(item => `<li class="list-group-item">${item}</li>`).join('')
+  render(`<ul class="list-group">${list}</ul>`)
+}
